@@ -56,3 +56,12 @@ func AutoMigrate() {
 	)
 	utils.Log("database migration proccess successful")
 }
+
+func GetPort() string {
+	utils.Log("retrieving port")
+	var port = os.Getenv("PORT")
+	if port == "" {
+		port = "80"
+	}
+	return port
+}	
