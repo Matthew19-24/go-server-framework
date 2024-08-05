@@ -45,11 +45,12 @@ func Connect() {
 		panic(err)
 	}
 	utils.Log("database conneted successfully")
+	AutoMigrate()
 }
 
-func AutoMigrate(connection *gorm.DB) {
+func AutoMigrate() {
 	utils.Log("initiating database migration process")
-	connection.Debug().AutoMigrate(
+	DB.Debug().AutoMigrate(
 		&models.Example{},
 		&models.Foreign{},
 	)
