@@ -3,6 +3,7 @@ package db
 import (
 	"fmt"
 	"os"
+	"testServer/models"
 	"testServer/utils"
 	"time"
 
@@ -40,7 +41,17 @@ func Connect() {
 		retries--
 	}
 	if err != nil {
-		panic("database connection failed after multiple retries")
+		utils.Log("database connection failed after multiple retries")
+		panic(err)
 	}
-	utils.Log("db conneted successfully")
+	utils.Log("database conneted successfully")
+}
+
+func AutoMigrate(connection *gorm.DB) {
+	utils.Log("initiating database migration process")
+	connection.Debug().AutoMigrate(
+		&models.Example{},
+		&models.Foreign{},
+	)
+	utils.Log("database migration proccess successful")
 }
