@@ -1,8 +1,6 @@
 package models
 
-import(
-	"github.com/google/uuid"
-)
+import "github.com/google/uuid"
 
 type Foreign struct {
 	ForeignUUID uuid.UUID `json:"foreignUUID" gorm:"primary_key;column:foreign_uuid;type:varchar(36)"`
