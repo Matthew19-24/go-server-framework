@@ -1,0 +1,4 @@
+MYSQL_DBNAME = tester
+MYSQL_USER = tester
+MYSQL_PASSWORD = testsecret
+MYSQL_HOST = "localhost:3306"

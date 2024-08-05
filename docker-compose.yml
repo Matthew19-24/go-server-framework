@@ -1,0 +1,35 @@
+version: '3.4'
+services:
+  app:
+    image: test-server
+    build: ./
+    depends_on:
+      - db
+    environment:
+      MYSQL_DBNAME: tester
+      MYSQL_USER: tester
+      MYSQL_PASSWORD: testsecret
+      MYSQL_HOST: "db:3306"
+    ports:
+      - "30002:30002"
+    networks:
+      - test-db
+
+  db: 
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: testsecret
+      MYSQL_DATABASE: tester
+      MYSQL_USER: tester
+      MYSQL_PASSWORD: testsecret
+    volumes:
+      - test-db:/var/lib/mysql
+    networks:
+      - test-db
+
+volumes:
+  test-db:
+
+networks:
+  test-db:
+    driver: overlay
