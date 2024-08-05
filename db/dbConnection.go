@@ -44,7 +44,7 @@ func Connect() {
 		utils.Log("database connection failed after multiple retries")
 		panic(err)
 	}
-	utils.Log("database conneted successfully")
+	utils.Log("database connected successfully")
 	AutoMigrate()
 }
 
